@@ -76,7 +76,7 @@
                   b.status = 0;
                   score++;
                   if(score == brickRowCount*brickColumnCount) {
-                    alert("YOU WIN, CONGRATULATIONS!");
+                    //alert("YOU WIN, CONGRATULATIONS!");
                     document.location.reload();
                     // clearInterval(interval); // Needed for Chrome to end game
                   }
@@ -146,14 +146,14 @@
           }
           else if (y + dy > canvas.height - ballRadius) {
             if (x > paddleX && x < paddleX + paddleWidth) {
-              if (y = y - paddleHeight) {
+              if (y == y - paddleHeight) {
                 dy = -dy;
               }
             }
             else {
               lives--;
               if(!lives) {
-                alert("GAME OVER");
+                //alert("GAME OVER");
                 document.location.reload();
                 // clearInterval(interval); // Needed for Chrome to end game
               }

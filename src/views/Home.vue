@@ -28,6 +28,7 @@ export default {
           break
         }
         case 1:{
+          this.$router.push({name:'Matterjs01'})
           break
         }
       }
