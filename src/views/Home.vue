@@ -5,9 +5,13 @@
       <div class="element0" @click="GoProject(0)">Пример использования CANVAS. Игра на `чистом` JS.
         Сделана по материалам сайта <a href="https://developer.mozilla.org/ru/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript">MDN webdocs</a>
       </div>
-      <div class="element0" @click="GoProject(1)">Эксперементы с фреймворком <span class="flash">Matter JS</span>
+      <div class="element0" @click="OpenSubMenu">Эксперементы с фреймворком <span class="flash">Matter JS</span>
+      </div>
+      <div v-if="menu.show">
+      <div class="element1" v-for="item in menu.list" :key="item.text" @click="GoPage(item.link)" >{{item.text}}</div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -19,6 +23,23 @@ export default {
   name: 'Home',
   components: {
 
+  },
+  data(){
+    return {
+      menu:{
+        show:false,
+        list:[{
+          text:"Пример использования библиотеки MatterJS, взят с официального сайта",
+          link:"Matterjs01"
+        },
+        {
+          text:"Другой пример",
+          link:"Matterjs02"
+        }
+        ],
+        
+      }
+    }
   },
   methods:{
     GoProject:function(n){
@@ -32,6 +53,12 @@ export default {
           break
         }
       }
+    },
+    OpenSubMenu:function(){
+        this.menu.show = !this.menu.show
+    },
+    GoPage:function(link){
+      this.$router.push({name:link})
     }
   }
 }
@@ -72,5 +99,15 @@ export default {
   }
   .element0:hover{
     background-color: rgba(60, 86, 95, 0.4);
+  }
+  .element1{
+    padding: 0.5rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    
+    background-color: rgba(60, 86, 95, 0.4);
+  }
+  .element1:hover{
+    background-color: rgba(98, 118, 126, 0.438);
   }
 </style>
