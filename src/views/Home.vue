@@ -5,10 +5,15 @@
       <div class="element0" @click="GoProject(0)">Пример использования CANVAS. Игра на `чистом` JS.
         Сделана по материалам сайта <a href="https://developer.mozilla.org/ru/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript">MDN webdocs</a>
       </div>
-      <div class="element0" @click="OpenSubMenu">Эксперементы с фреймворком <span class="flash">Matter JS</span>
+      <div class="element0" @click="OpenSubMenu(0)">Эксперементы с фреймворком <span class="flash">Matter JS</span>
       </div>
       <div v-if="menu.show">
       <div class="element1" v-for="item in menu.list" :key="item.text" @click="GoPage(item.link)" >{{item.text}}</div>
+      </div>
+      <div class="element0" @click="OpenSubMenu(1)">Эксперементы с фреймворком <span class="flash">P5</span>
+      </div>
+      <div v-if="menu2.show">
+        <div class="element1" v-for="item in menu2.list" :key="item.text" @click="GoPage(item.link)" >{{item.text}}</div>
       </div>
     </div>
     
@@ -36,8 +41,18 @@ export default {
           text:"Другой пример",
           link:"Matterjs02"
         }
+
         ],
         
+      },
+      menu2:{
+        show:false,
+        list:[
+          {
+            text:"Пример 1",
+            link:"P5_01"
+          }
+        ]
       }
     }
   },
@@ -54,8 +69,11 @@ export default {
         }
       }
     },
-    OpenSubMenu:function(){
+    OpenSubMenu:function(n){
+      if(n==0)
         this.menu.show = !this.menu.show
+      if(n==1)
+        this.menu2.show = !this.menu2.show
     },
     GoPage:function(link){
       this.$router.push({name:link})
